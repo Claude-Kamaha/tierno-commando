@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "tierno-commando:build:production"
+              "buildTarget": "tierno-commando:build:production"
             },
             "development": {
-              "browserTarget": "tierno-commando:build:development"
+              "buildTarget": "tierno-commando:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "tierno-commando:build"
+            "buildTarget": "tierno-commando:build"
           }
         },
         "test": {
