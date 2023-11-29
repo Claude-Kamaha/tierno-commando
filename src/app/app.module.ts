@@ -5,6 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -14,9 +17,13 @@ import { LayoutModule } from './layout/layout.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    LayoutModule
+    LayoutModule,
+    HttpClientModule,
+
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withInterceptors([errorInterceptor]))
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

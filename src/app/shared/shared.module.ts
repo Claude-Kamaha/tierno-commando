@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 const MaterialComponents = [
-  // MatFormFieldModule,
+
   // MatButtonModule,
   // MatAutocompleteModule,
   // MatCardModule,
@@ -24,7 +25,8 @@ const MaterialComponents = [
   // MatDatepickerModule,
   // MatDividerModule,
   MatIconModule,
-  MatToolbarModule
+  MatToolbarModule,
+
   // MatSortModule,
   // MatNativeDateModule,
   // MatBadgeModule,
@@ -34,15 +36,25 @@ const MaterialComponents = [
   // MatTooltipModule,
   // MatSliderModule
 ];
+const OtherComponents = [
+
+
+]
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    MaterialComponents
+    MaterialComponents,
+    ReactiveFormsModule,
+    FormsModule,
+    // OtherComponents
   ],
   exports: [
-    MaterialComponents
+    MaterialComponents,
+    ReactiveFormsModule,
+    FormsModule
+    // OtherComponents
   ]
 })
 export class SharedModule { }
