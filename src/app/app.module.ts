@@ -8,6 +8,9 @@ import { LayoutModule } from './layout/layout.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
+import { headersInterceptor } from './core/interceptors/headers.interceptor';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { urlInterceptor } from './core/interceptors/url.interceptor';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,15 @@ import { errorInterceptor } from './core/interceptors/error.interceptor';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,
     LayoutModule,
     HttpClientModule,
 
   ],
   providers: [
-    provideHttpClient(withInterceptors([errorInterceptor]))
+    provideHttpClient(withInterceptors([urlInterceptor, authInterceptor, headersInterceptor, errorInterceptor]))
   ],
   bootstrap: [AppComponent]
 })

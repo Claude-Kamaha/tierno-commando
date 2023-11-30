@@ -1,5 +1,11 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
+import { NotificationService } from '../notification.service';
+import { inject } from '@angular/core';
+
+
+
+
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
@@ -7,45 +13,47 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       const errorMsg = error.error;
+      let notificationService = inject(NotificationService);
       switch (error.status) {
         case 401:
-          // this.notificationService.warn(errorMsg.message);
+          notificationService.warn(errorMsg.message);
           return throwError(() => error);
           break;
         case 403:
-          // this.notificationService.warn(
-          //   'You are not authorized for this request!'
-          // );
+          notificationService.warn(
+            'You are not authorized for this request!'
+          );
           // this.auth.logout();
           window.location.reload();
           return throwError(() => error);
           break;
         case 404:
-          // this.notificationService.warn(errorMsg.message);
+          notificationService.warn(errorMsg.message);
           return throwError(() => error);
           break;
         case 400:
-          // this.notificationService.warn(errorMsg.message);
+          console.log(error.message);
+
+          notificationService.warn(errorMsg.message);
           return throwError(() => error);
           break;
         case 409:
-          // this.notificationService.warn(errorMsg.message);
+          notificationService.warn(errorMsg.message);
           return throwError(() => error);
           break;
         case 500:
-          // this.notificationService.warn(errorMsg.message);
-          // this.router.navigate(['/500']);
+          notificationService.warn(errorMsg.message);
           return throwError(() => error);
           break;
         case 503:
           console.log(errorMsg.message);
 
-          // this.notificationService.warn(errorMsg.message);
+          notificationService.warn(errorMsg.message);
           return throwError(() => error);
           break;
         default:
           // console.log(errorMsg.message);
-          // this.notificationService.warn(`Oops! Something went wrong!`);
+          notificationService.warn(`Oops! Something went wrong!`);
           return throwError(() => error);
           break;
       }

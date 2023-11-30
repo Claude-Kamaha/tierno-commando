@@ -1,10 +1,10 @@
 <body>
   <div class="box-form">
     <div class="left">
-      <form formGroup="loginForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="inputs">
           <h1 style="font-size: 40px;margin-bottom: 30px; font-weight: 800;">Login</h1>
-          <input type="email" placeholder="Email" formControlName="email">
+          <input type="text" placeholder="Username" formControlName="log">
           <br>
           <input type="password" placeholder="Password" formControlName="password">
         </div>
