@@ -6,7 +6,8 @@ import { ClassicComponent } from './classic/classic.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SidebodyComponent } from './sidebody/sidebody.component';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -14,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     EmptyComponent,
     SidenavComponent,
+    SidebodyComponent,
     ClassicComponent,
     NavbarComponent
   ],
@@ -21,8 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     SharedModule,
-    ReactiveFormsModule,
-    FormsModule,
+    // ReactiveFormsModule,
+    // FormsModule,
 
   ]
 })

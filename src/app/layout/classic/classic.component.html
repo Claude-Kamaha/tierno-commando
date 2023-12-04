@@ -1,5 +1,22 @@
-<app-navbar></app-navbar>
-<app-sidenav #sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+<!-- <div class="toolbar" [ngClass]="getBodyClass()">
+  <i class="fal fa-bars" (click)="sidenav.toggleCollapse()" *ngIf="screenWidth <= 768"></i>
+
+  <img src="assets/images/ejara-colored.svg" alt="logo" class="toolbar-logo" *ngIf="screenWidth <= 768" />
+  <div class="user-account">
+    <div class="profileImage">EJ</div>
+    <span *ngIf="screenWidth > 768" style="margin-left: 10px">
+      Hello
+    </span>
+  </div>
+</div> -->
+<!-- <app-sidenav #sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+<app-navbar [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-navbar>
 <div class="body" [ngClass]="getBodyClass()">
   <router-outlet></router-outlet>
-</div>
+</div> -->
+
+<app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+
+<app-sidebody [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth">
+
+</app-sidebody>

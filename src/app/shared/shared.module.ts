@@ -77,8 +77,8 @@ const OtherComponents = [
   imports: [
     CommonModule,
     MaterialComponents,
-    ReactiveFormsModule,
-    FormsModule,
+    // ReactiveFormsModule,
+    // FormsModule,
     // OtherComponents
   ],
   exports: [
