@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { HomeService } from './home.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   constructor(
+    private router: Router,
     private homeService: HomeService
   ) {
 
@@ -33,6 +35,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
       // this.dataSource = new MatTableDataSource(this.modeles)
 
     })
+  }
+  createUser() {
+    this.router.navigate(['/create-client'])
   }
 }
 

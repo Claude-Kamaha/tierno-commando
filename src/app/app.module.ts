@@ -12,9 +12,11 @@ import { headersInterceptor } from './core/interceptors/headers.interceptor';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { urlInterceptor } from './core/interceptors/url.interceptor';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
