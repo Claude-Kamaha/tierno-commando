@@ -32,6 +32,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSliderModule } from '@angular/material/slider';
+// import * as intlTelInput from 'intl-tel-input';
 
 
 const MaterialComponents = [
@@ -57,7 +58,6 @@ const MaterialComponents = [
   MatDividerModule,
   MatIconModule,
   MatToolbarModule,
-
   MatSortModule,
   MatNativeDateModule,
   MatBadgeModule,
@@ -68,8 +68,7 @@ const MaterialComponents = [
   MatSliderModule
 ];
 const OtherComponents = [
-
-
+  // intlTelInput
 ]
 
 @NgModule({
@@ -77,14 +76,12 @@ const OtherComponents = [
   imports: [
     CommonModule,
     MaterialComponents,
-    // ReactiveFormsModule,
-    // FormsModule,
     // OtherComponents
   ],
   exports: [
     MaterialComponents,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
     // OtherComponents
   ]
 })

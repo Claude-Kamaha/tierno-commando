@@ -1,4 +1,5 @@
-<mat-card style="padding: 10px;">
+<mat-card style="padding: 20px; width: 70%;    position: relative;
+    transform: translate(25%, 10px);">
   <h1>
     Formulaire de creation de compte
   </h1>
@@ -8,7 +9,7 @@
       <div class="form-input-material range">
         <div style="margin-bottom: 5px">
           <label for="name"> Nom d’utilisateur Ejara du client</label>
-          <input type="text" id="username" name="username" placeholder="username" formControlName="username">
+          <input type="text" id="username" name="username" placeholder="Nom d’utilisateur" formControlName="username">
         </div>
         <div style="margin-bottom: 5px">
           <label for="name">Email </label>
@@ -20,7 +21,7 @@
           <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Numero de telephone"
             formControlName="phoneNumber">
         </div>
-        <div style="margin-bottom: 5px">
+        <div style=" bottom: 5px">
           <label for="text">Nom </label>
           <input type="text" id="lastName" name="lastName" placeholder="Nom" formControlName="lastName">
         </div>
@@ -28,15 +29,28 @@
           <label for="name">Prenom </label>
           <input type="text" id="firstName" name="firstName" placeholder="Prenom" formControlName="firstName">
         </div>
+        <div style="margin-bottom: 5px">
+          <label for="name">Langue preferée </label>
+          <select id="gender" name="gender" formControlName="gender" required>
+            <option value="female">Feminin</option>
+            <option value="male">Masculin</option>
+            <option value="other">Other</option>
+
+          </select>
+        </div>
 
         <div style="margin-bottom: 5px">
           <label for="name">Langue preferée </label>
-          <input type="text" id="language" name="language" placeholder="Langue preferée" formControlName="language">
+          <select id="language" name="language" formControlName="language">
+            <option *ngFor="let langue of language" [value]="langue.value">{{langue.name}}</option>
+          </select>
+
         </div>
         <div style="margin-bottom: 5px">
           <label for="name">Type d'utilisateur </label>
-          <input type="text" id="customerType" name="customerType" placeholder="Type d'utilisateur"
-            formControlName="customerType">
+          <select id="customerType" name="customerType" formControlName="customerType">
+            <option *ngFor="let customer of userType" [value]="customer.value">{{customer.name}}</option>
+          </select>
         </div>
         <div style="margin-bottom: 5px">
           <label for="name">Mot de passe </label>
@@ -46,9 +60,9 @@
 
 
     </div>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
     <div class="divHeight">
-      <input type="submit" value="Submit" (click)="submitDoc()">
+      <input type="submit" value="Envoyer" [disabled]="!createDocForm.valid" (click)="submitDoc()">
     </div>
 
   </form>

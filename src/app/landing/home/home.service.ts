@@ -14,4 +14,15 @@ export class HomeService {
   getMyReferrals(): Observable<any> {
     return this.http.get<any>('/v1/customer/referred-friends');
   }
+
+  getCountries(): Observable<any> {
+    return this.http.get<any>('/v1/utils/countries');
+  }
+
+  createClient(payload: any) {
+    return this.http.post('/v1/agent/create-account', payload);
+  }
+
+
+
 }
