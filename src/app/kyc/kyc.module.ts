@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { KycComponent } from './kyc/kyc.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [KycComponent],
   imports: [
     CommonModule
   ]

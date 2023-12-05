@@ -1,0 +1,57 @@
+<mat-card>
+  <h1>
+    Formulaire de creation de compte
+
+
+  </h1>
+
+  <form [formGroup]="createDocForm">
+    <div>
+      <div class="form-input-material range">
+        <div style="margin-bottom: 5px" ;>
+          <label for="name"> Nom d’utilisateur Ejara du client</label>
+          <input type="text" id="username" name="username" placeholder="username" formControlName="username">
+        </div>
+        <div style="margin-bottom: 5px">
+          <label for="name">Email </label>
+          <input type="emailAddress" id="emailAddress" name="emailAddress" placeholder="Email Address"
+            formControlName="emailAddress">
+        </div>
+        <div style="margin-bottom: 5px">
+          <label for="name">Numero de telephone </label>
+          <input type="phoneNumber" id="phoneNumber" name="phoneNumber" placeholder="Numero de telephone"
+            formControlName="phoneNumber">
+        </div>
+        <div style="margin-bottom: 5px">
+          <label for="name">Nom </label>
+          <input type="lastName" id="lastName" name="lastName" placeholder="Nom" formControlName="lastName">
+        </div>
+        <div style="margin-bottom: 5px">
+          <label for="name">Prenom </label>
+          <input type="firstName" id="firstName" name="firstName" placeholder="Prenom" formControlName="firstName">
+        </div>
+
+        <div style="margin-bottom: 5px">
+          <label for="name">Langue preferée </label>
+          <input type="language" id="language" name="language" placeholder="Langue preferée" formControlName="language">
+        </div>
+        <div style="margin-bottom: 5px">
+          <label for="name">Type d'utilisateur </label>
+          <input type="customerType" id="customerType" name="customerType" placeholder="Type d'utilisateur"
+            formControlName="customerType">
+        </div>
+        <div style="margin-bottom: 5px">
+          <label for="name">Type d'utilisateur </label>
+          <input type="password" id="password" name="password" placeholder="Mot de Passe" formControlName="password">
+        </div>
+      </div>
+
+
+    </div>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <div class="divHeight">
+      <input type="submit" value="Submit" (click)="submitDoc()">
+    </div>
+
+  </form>
+</mat-card>
