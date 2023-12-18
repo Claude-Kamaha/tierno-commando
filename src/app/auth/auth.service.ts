@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { AuthData } from './auth';
 import { environment } from 'src/environment/environment';
 
@@ -11,6 +11,10 @@ import { environment } from 'src/environment/environment';
 export class AuthService {
   private accessToken?: string | null;
   private refreshaccessToken?: string | null;
+  private loggedIn = new BehaviorSubject(false); // {1}
+  get isLoggedIn() {
+    return this.loggedIn.asObservable(); // {2}
+  }
   http = inject(HttpClient)
   constructor(
     private router: Router) { }
@@ -25,6 +29,7 @@ export class AuthService {
           expires_in: response.expires_in,
           token_type: response.token_type,
         };
+        this.loggedIn.next(true);
 
         return authData;
       })
@@ -39,7 +44,7 @@ export class AuthService {
     this.refreshaccessToken =
       refreshToken ||
       localStorage.getItem(environment.refreshTokenKey);
-    // We need the token to be available
+   
     if (!this.accessToken) {
       return false;
     }
@@ -54,5 +59,9 @@ export class AuthService {
     }
 
     return '';
+  }
+  logout() {                            
+    this.loggedIn.next(false);
+    this.router.navigate(['']);
   }
 }

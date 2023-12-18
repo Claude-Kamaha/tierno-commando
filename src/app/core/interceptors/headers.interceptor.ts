@@ -1,5 +1,5 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { environment } from 'src/environment/environment';
+import { environment, kycEnvironment } from 'src/environment/environment';
 
 export const headersInterceptor: HttpInterceptorFn = (req, next) => {
   console.log('header interceptor', req.url);
@@ -14,6 +14,15 @@ export const headersInterceptor: HttpInterceptorFn = (req, next) => {
     const apiRequest = req.clone({ headers });
 
     return next(apiRequest);
+  }
+
+  if (req.url.startsWith(kycEnvironment.apiKyc)) {
+    let headers = req.headers.set('client-secret', kycEnvironment.clientSecret);
+    headers = headers.set('client-key', `${kycEnvironment.clientKey}`);
+    // headers = headers.set('client', `${kycEnvironment.client}`);
+    const kycRequest = req.clone({ headers });
+
+    return next(kycRequest);
   }
 
   return next(req);

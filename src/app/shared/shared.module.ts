@@ -32,6 +32,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSliderModule } from '@angular/material/slider';
+import { LoaderComponent } from './loader/loader.component';
 // import * as intlTelInput from 'intl-tel-input';
 
 
@@ -72,7 +73,9 @@ const OtherComponents = [
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LoaderComponent
+  ],
   imports: [
     CommonModule,
     MaterialComponents,
@@ -82,6 +85,7 @@ const OtherComponents = [
     MaterialComponents,
     ReactiveFormsModule,
     FormsModule,
+    LoaderComponent
     // OtherComponents
   ]
 })

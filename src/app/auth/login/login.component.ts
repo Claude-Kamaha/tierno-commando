@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, UntypedFormGroup } from '@angular/forms';
 import { AuthService } from '../auth.service';
@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthData } from '../auth';
 import { environment } from 'src/environment/environment';
+import { BehaviorSubject } from 'rxjs';
+import { NotificationService } from 'src/app/core/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +18,14 @@ import { environment } from 'src/environment/environment';
 })
 export class LoginComponent {
   loginForm!: FormGroup;
+  loginLoading =false;
+  // @inject (router)=Router
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router,
+     private router: Router,
+    private notificationService: NotificationService
   ) {
 
   }
@@ -37,7 +43,8 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.warn('hello', this.loginForm.value)
+    console.warn('hello', this.loginForm.value);
+    this.loginLoading=true;
     this.authService.login(this.loginForm.value).subscribe((response) => {
       const authData: AuthData = {
         token: response.token,
@@ -52,8 +59,13 @@ export class LoginComponent {
         localStorage.setItem(environment.refreshTokenKey, authData.refresh_token);
 
       }
-      this.router.navigate(['home'])
+     
+      this.loginLoading=false;
+      this.notificationService.success(response.message)
+      this.router.navigate(['/home'])
+
     })
 
   }
+ 
 }

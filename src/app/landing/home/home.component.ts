@@ -10,8 +10,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  // dataSource = new MatTableDataSource<>();
+  displayedColumns: string[] = [
+    'joignedOn', 
+    'username', 
+    'lastName',
+    'firstName', 
+    'gender',
+    'dateOfBirth',
+    'level'
+  ];
+   dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -23,21 +31,52 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
+    //  this.dataSource.paginator = this.paginator;
   }
   ngOnInit() {
     this.getAllReferredFriends()
   }
   getAllReferredFriends() {
-    this.homeService.getMyReferrals().subscribe((response: any) => {
-      console.log(response.data);
-      // this.modeles = response.data
-      // this.dataSource = new MatTableDataSource(this.modeles)
+    this.dataSource = new MatTableDataSource();
 
-    })
+    // this.homeService.getMyReferrals().subscribe((response: any) => {
+      // console.log(response.data);
+      
+let data :any=[
+  {
+      "username": "joelletest1",
+      "joigned_on": 1701089950351,
+      "level": 1,
+      "level_name": "basic",
+      "first_name": "Joelle",
+      "last_name": "Kama",
+      "gender": "female",
+      "date_of_birth": "2005-01-22",
+      "identification": null
+  },
+  {
+    "username": "joelletest1",
+    "joigned_on": 1701089950351,
+    "level": 1,
+    "level_name": "basic",
+    "first_name": "Joelle",
+    "last_name": "Kama",
+    "gender": "female",
+    "date_of_birth": "2005-01-22",
+    "identification": null
+}
+];
+// console.log(response.data);
+      this.dataSource =  new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+
+    // })
   }
   createUser() {
     this.router.navigate(['/create-client'])
+  }
+  gotoDetails(row:any){
+    this.router.navigate(['kyc'])
   }
 }
 

@@ -10,3 +10,12 @@ export const environment = {
   appPlatform: 'web',
   appVersion: 'v1',
 };
+export const kycEnvironment = {
+  production: false,
+  apiKyc: 'https://kyc-testbox.ejaraapis.xyz/api/v2',
+  clientKey: '65ddfa71aa',
+  clientSecret: 'Oo860Sb)]FkzmWqrhRhB%*wc3',
+  tokenKey: 'token',
+  // client: 'Tierno Commando',
+  refreshTokenKey: 'refresh_token',
+};
