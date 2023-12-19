@@ -40,10 +40,12 @@ input.nosubmit {
 }
 .container{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
 }
 .items{
     display: flex;
+    height: 36px;
     flex-direction: row;
 
 }

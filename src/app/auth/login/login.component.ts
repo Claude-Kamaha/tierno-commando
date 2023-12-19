@@ -20,14 +20,14 @@ export class LoginComponent {
   loginForm!: FormGroup;
   loginLoading =false;
   // @inject (router)=Router
-
+  notificationService!: NotificationService;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
      private router: Router,
-    private notificationService: NotificationService
+    // private notificationService: NotificationService
   ) {
-
+    this.notificationService = inject(NotificationService)
   }
   ngOnInit() {
     this.createLoginForm()
@@ -46,11 +46,13 @@ export class LoginComponent {
     console.warn('hello', this.loginForm.value);
     this.loginLoading=true;
     this.authService.login(this.loginForm.value).subscribe((response) => {
+     
       const authData: AuthData = {
         token: response.token,
         refresh_token: response.refresh_token,
         expires_in: response.expires_in,
         token_type: response.token_type,
+        message: response.message
       };
 
       if (this.authService.initSession(authData.token, authData.refresh_token)) {
@@ -61,10 +63,17 @@ export class LoginComponent {
       }
      
       this.loginLoading=false;
+   
+      
       this.notificationService.success(response.message)
       this.router.navigate(['/home'])
 
-    })
+    },
+    (error)=>{
+      this.loginLoading=false;
+
+    }
+    )
 
   }
  

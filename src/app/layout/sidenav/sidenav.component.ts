@@ -145,4 +145,7 @@ export class SidenavComponent {
       });
     }
   }
+  logout(){
+   this.auth.logout() 
+  }
 }

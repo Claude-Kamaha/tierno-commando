@@ -4,13 +4,15 @@ import { ClassicComponent } from './layout/classic/classic.component';
 import { EmptyComponent } from './layout/empty/empty.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthGuard } from './auth/auth.guard';
+import { authguardGuard } from './auth/authguard.guard';
 
 const routes: Routes = [{
   path: '',
-   canActivate: [AuthGuard],
   component: ClassicComponent,
+  
   children: [
     {
+      canActivate: [authguardGuard],
       path: '',
       loadChildren: () =>
         import('./landing/landing.module').then((m) => m.LandingModule),

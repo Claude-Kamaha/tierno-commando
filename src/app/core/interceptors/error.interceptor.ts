@@ -9,11 +9,11 @@ import { inject } from '@angular/core';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
-
+  let notificationService: NotificationService = inject(NotificationService);
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       const errorMsg = error.error;
-      let notificationService = inject(NotificationService);
+    
       switch (error.status) {
         case 401:
           notificationService.warn(errorMsg.message);

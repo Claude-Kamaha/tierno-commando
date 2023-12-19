@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { HomeService } from './home.service';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     'level'
   ];
    dataSource = new MatTableDataSource<any>();
+   range!: FormGroup;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -66,6 +68,10 @@ let data :any=[
     "identification": null
 }
 ];
+    this.range = new FormGroup({
+  start: new FormControl<Date | null>(null),
+  end: new FormControl<Date | null>(null),
+});
 // console.log(response.data);
       this.dataSource =  new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

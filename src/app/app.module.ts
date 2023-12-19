@@ -29,7 +29,7 @@ import { urlInterceptor } from './core/interceptors/url.interceptor';
 
   ],
   providers: [
-    provideHttpClient(withInterceptors([urlInterceptor, authInterceptor, headersInterceptor, errorInterceptor]))
+    provideHttpClient(withInterceptors([authInterceptor,urlInterceptor,headersInterceptor,errorInterceptor]))
   ],
   bootstrap: [AppComponent]
 })
