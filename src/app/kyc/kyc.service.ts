@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
@@ -8,16 +8,16 @@ import { Observable, map } from 'rxjs';
 export class KycService {
 
   constructor(
-    private http:HttpClient
+    private http: HttpClient
   ) { }
 
   headers = new HttpHeaders({
     'Client': 'Tierno Commando',
-    });
-    
- options = { 
-  // headers: this.headers
-};
+  });
+
+  options = {
+    // headers: this.headers
+  };
 
   getKycLevelDocuments(level: number, country: string): Observable<any[]> {
     // level = level + 1;
@@ -34,4 +34,15 @@ export class KycService {
   submitAgent(payload: any) {
     return this.http.post('/agent/manual-kyc-requests', payload, this.options);
   }
+
+  getAgentList(agentNellysCoinId: string): Observable<any> {
+
+    let params: HttpParams = new HttpParams();
+
+    params = params.set('agentNellysCoinId', agentNellysCoinId);
+    return this.http.get<any>('/agent/manual-kyc-requests', {
+      params,
+    });
+  }
+
 }

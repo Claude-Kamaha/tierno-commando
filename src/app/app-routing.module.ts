@@ -9,10 +9,10 @@ import { authguardGuard } from './auth/authguard.guard';
 const routes: Routes = [{
   path: '',
   component: ClassicComponent,
-  
+  canActivate: [authguardGuard],
   children: [
     {
-      canActivate: [authguardGuard],
+
       path: '',
       loadChildren: () =>
         import('./landing/landing.module').then((m) => m.LandingModule),

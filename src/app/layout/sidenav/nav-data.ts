@@ -6,8 +6,8 @@ export const navbarData = [
   },
 
   {
-    routeLink: 'statistics',
-    icon: 'fal fa-chart-bar',
+    routeLink: 'kyc/all-kyc',
+    icon: 'verified-user',
     label: 'KYC'
   },
 
