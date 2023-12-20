@@ -1,163 +1,157 @@
-<div class="main-card">
-    <mat-card style="width: 700px;">
-      <mat-card-header style="background-color: #505ae9;">
-        <mat-card-title style="font-weight: bold; color: white;">Manual KYC</mat-card-title>
-  
-      </mat-card-header>
-      <mat-divider style="color: blue;margin-bottom: 10px;font-weight: bold;"></mat-divider>
-  
-      <mat-card-content>
-        <!-- <app-loading [loading]="loading"></app-loading> -->
-        <mat-horizontal-stepper [linear]="isLinear" #stepper class="mat-elevation-z0" [selectedIndex]="currentIndex"
-          *ngIf="!loading">
-  
-          <div class="row">
-  
-            <mat-step [stepControl]="form">
-              <ng-container *ngIf="firstStep">
-                <form [formGroup]="form" (ngSubmit)="getAwsLink()" (keydown.enter)="$event.preventDefault()"
-                 >
-                  <ng-template matStepLabel>Basic Informations</ng-template>
-  
-                  <div class="kycForm">
-                    <h2>Basic Informations</h2>
-  
+<div class="main-card" style="margin: auto">
+  <mat-card style="width: 700px;">
+    <mat-card-header style="background-color: #505ae9;">
+      <mat-card-title style="font-weight: bold; color: white;">KYC</mat-card-title>
+
+    </mat-card-header>
+    <mat-divider style="color: blue;margin-bottom: 10px;font-weight: bold;"></mat-divider>
+
+    <mat-card-content>
+      <!-- <app-loading [loading]="loading"></app-loading> -->
+      <mat-horizontal-stepper [linear]="isLinear" #stepper class="mat-elevation-z0" [selectedIndex]="currentIndex"
+        *ngIf="!loading">
+
+        <div class="row">
+
+          <mat-step [stepControl]="form">
+            <ng-container *ngIf="firstStep">
+              <form [formGroup]="form" (ngSubmit)="getAwsLink()" (keydown.enter)="$event.preventDefault()">
+                <ng-template matStepLabel>Basic Informations</ng-template>
+
+                <div class="kycForm">
+                  <h2>Basic Informations</h2>
+
+                  <mat-form-field fxFlex class="example-full-width">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Ex. ejara..." name="selectedStatus" formControlName="customerUsername">
+
+                  </mat-form-field>
+                  <mat-form-field fxFlex class="example-full-width">
+                    <mat-label>Nom</mat-label>
+                    <input matInput placeholder="Ex. ejara..." name="selectedStatus" formControlName="lastName">
+
+                  </mat-form-field>
+                  <mat-form-field fxFlex class="example-full-width">
+                    <mat-label>Prenom</mat-label>
+                    <input matInput placeholder="Ex. ejara..." name="selectedStatus" formControlName="firstName">
+
+                  </mat-form-field>
+                  <mat-form-field fxFlex class="example-full-width">
+                    <mat-label>Sexe</mat-label>
+                    <mat-select placeholder="Choose a genrde" formControlName="gender" name="gender">
+                      <mat-option *ngFor="let gender of genders" [value]="gender">
+                        {{ gender }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <ng-container>
                     <mat-form-field fxFlex class="example-full-width">
-                      <mat-label>Username</mat-label>
-                      <input matInput placeholder="Ex. ejara..." name="selectedStatus" formControlName="customerUsername"
-                       >
-  
+                      <mat-label>Level</mat-label>
+                      <mat-select placeholder="Choose a level" formControlName="kycLevel" name="kycLevel">
+                        <mat-option *ngFor="let level of levels" [value]="level">
+                          {{ level }}
+                        </mat-option>
+                      </mat-select>
                     </mat-form-field>
+
+
                     <mat-form-field fxFlex class="example-full-width">
-                        <mat-label>Nom</mat-label>
-                        <input matInput placeholder="Ex. ejara..." name="selectedStatus" formControlName="lastName"
-                         >
-    
-                      </mat-form-field>
-                      <mat-form-field fxFlex class="example-full-width">
-                        <mat-label>Prenom</mat-label>
-                        <input matInput placeholder="Ex. ejara..." name="selectedStatus" formControlName="firstName"
-                         >
-    
-                      </mat-form-field>
-                      <mat-form-field fxFlex class="example-full-width">
-                        <mat-label>Sexe</mat-label>
-                        <mat-select placeholder="Choose a genrde" formControlName="gender" name="gender"
-                        >
-                          <mat-option *ngFor="let gender of genders" [value]="gender">
-                            {{ gender }}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    <ng-container >
-                      <mat-form-field fxFlex class="example-full-width">
-                        <mat-label>Level</mat-label>
-                        <mat-select placeholder="Choose a level" formControlName="kycLevel" name="kycLevel"
-                        >
-                          <mat-option *ngFor="let level of levels" [value]="level">
-                            {{ level }}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-  
-  
-                      <mat-form-field fxFlex class="example-full-width">
-                        <mat-label>Leave a comment</mat-label>
-                        <textarea matInput formControlName="reason" name="reason" placeholder="Enter the reason"
-                          rows="4"></textarea>
-                        <mat-error *ngIf="form.get('reason')?.hasError('required')">Reason is required
-                        </mat-error>
-                      </mat-form-field>
-  
-  
-  
-                    </ng-container>
-                    <!-- <app-loading [loading]="userLoading" *ngIf="userLoading"></app-loading> -->
-                    <button mat-raised-button color="primary" (click)="getNextButton()" matStepperNext type="button"
-                      style="width: 30%;" *ngIf="
+                      <mat-label>Leave a comment</mat-label>
+                      <textarea matInput formControlName="reason" name="reason" placeholder="Enter the reason"
+                        rows="4"></textarea>
+                      <mat-error *ngIf="form.get('reason')?.hasError('required')">Reason is required
+                      </mat-error>
+                    </mat-form-field>
+
+
+
+                  </ng-container>
+                  <!-- <app-loading [loading]="userLoading" *ngIf="userLoading"></app-loading> -->
+                  <button mat-raised-button color="primary" (click)="getNextButton()" matStepperNext type="button"
+                    style="width: 30%;" *ngIf="
                 !form.get('reason')?.hasError('required') &&
                 !form.get('kycLevel')?.hasError('required') &&
                 !form.get('customerUsername')?.hasError('required')
               ">
-                      Next <i class="fal fa-solid fa-chevron-right"></i>
-                    </button>
-                  </div>
-  
-                  <mat-progress-bar mode="indeterminate" *ngIf="Userupdating"></mat-progress-bar>
-                </form>
-              </ng-container>
-            </mat-step>
-  
-            <mat-step [stepControl]="documentForm">
-              <ng-container *ngIf="documentStep">
-                <form [formGroup]="documentForm" (ngSubmit)="getAwsLink()" >
-                  <ng-template matStepLabel>Upload Documents</ng-template>
-  
-                  <div>
-                    <div class="column-3">
-                      <mat-card style="width: 600px;">
-                        <mat-card-header>
-                          <mat-card-title>Select required documents </mat-card-title>
-                        </mat-card-header>
-                        <mat-card-content style="display: flex;flex-direction: row;">
-                          <div formArrayName="particulars">
-  
-                            <div *ngFor="let document of particulars.controls; index as i">
-                              <div class="form-group">
-                                <div [formGroupName]="i">
-                                  <!-- <mat-form-field class="hidden">
+                    Next <i class="fal fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+
+                <mat-progress-bar mode="indeterminate" *ngIf="Userupdating"></mat-progress-bar>
+              </form>
+            </ng-container>
+          </mat-step>
+
+          <mat-step [stepControl]="documentForm">
+            <ng-container *ngIf="documentStep">
+              <form [formGroup]="documentForm" (ngSubmit)="getAwsLink()">
+                <ng-template matStepLabel>Upload Documents</ng-template>
+
+                <div>
+                  <div class="column-3">
+                    <mat-card style="width: 600px;">
+                      <mat-card-header>
+                        <mat-card-title>Select required documents </mat-card-title>
+                      </mat-card-header>
+                      <mat-card-content style="display: flex;flex-direction: row;">
+                        <div formArrayName="particulars">
+
+                          <div *ngFor="let document of particulars.controls; index as i">
+                            <div class="form-group">
+                              <div [formGroupName]="i">
+                                <!-- <mat-form-field class="hidden">
                                     <mat-label>Image type</mat-label>
                                     <input matInput formControlName="documentType" name="documentType" type="text"
                                       class="form-control" />
                                   </mat-form-field> -->
-                                  <p>{{ documents[i]?.name }}</p> <span>
-                                    <div>
-                                      <button type="button" mat-raised-button (click)="fileInput.click()">
-                                        Choose File
-                                      </button>
-                                      <input hidden (change)="onFileChange($event, i)" #fileInput type="file" id="file" />
-                                    </div>
-                                  </span>
-                                  <!-- <mat-divider></mat-divider> -->
-                                </div>
-                                <div fxflex *ngIf="level >= 2">
-                                  <figure>
-                                    <img [src]="documents[i]?.source" *ngIf="documents[i]?.source" class="user-document" />
-  
-                                  </figure>
-                                </div>
+                                <p>{{ documents[i]?.name }}</p> <span>
+                                  <div>
+                                    <button type="button" mat-raised-button (click)="fileInput.click()">
+                                      Choose File
+                                    </button>
+                                    <input hidden (change)="onFileChange($event, i)" #fileInput type="file" id="file" />
+                                  </div>
+                                </span>
+                                <!-- <mat-divider></mat-divider> -->
                               </div>
-                              <mat-divider style="width: 500px;margin: 10px 0px;"></mat-divider>
+                              <div fxflex *ngIf="level >= 2">
+                                <figure>
+                                  <img [src]="documents[i]?.source" *ngIf="documents[i]?.source"
+                                    class="user-document" />
+
+                                </figure>
+                              </div>
                             </div>
-  
+                            <mat-divider style="width: 500px;margin: 10px 0px;"></mat-divider>
                           </div>
-  
-                        </mat-card-content>
-                      </mat-card>
-                    </div>
-  
+
+                        </div>
+
+                      </mat-card-content>
+                    </mat-card>
                   </div>
-  
-                  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2%" style="margin-top: 15px;"
-                    >
-  
-                    <button style="width: 20%;" mat-raised-button color="warn" (click)="getPreviousButton()" type="button"
-                      class="button-full-width" fxflex="40%" *ngIf="!updating">
-                      <mat-icon>arrow_backward_ios</mat-icon> Back
-                    </button>
-  
-                    <button style="width: 20%;" type="submit" mat-raised-button color="primary" class="button-full-width"
-                      fxflex="60%" *ngIf="!updating">
-                      Submit
-                    </button>
-                  </div>
-                  <!-- <mat-progress-bar mode="indeterminate" *ngIf="uploading"></mat-progress-bar> -->
-                </form>
-              </ng-container>
-            </mat-step>
-          </div>
-        </mat-horizontal-stepper>
-  
-      </mat-card-content>
-    </mat-card>
-  </div>
+
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2%" style="margin-top: 15px;">
+
+                  <button style="width: 20%;" mat-raised-button color="warn" (click)="getPreviousButton()" type="button"
+                    class="button-full-width" fxflex="40%" *ngIf="!updating">
+                    <mat-icon>arrow_backward_ios</mat-icon> Back
+                  </button>
+
+                  <button style="width: 20%;" type="submit" mat-raised-button color="primary" class="button-full-width"
+                    fxflex="60%" *ngIf="!updating">
+                    Submit
+                  </button>
+                </div>
+                <!-- <mat-progress-bar mode="indeterminate" *ngIf="uploading"></mat-progress-bar> -->
+              </form>
+            </ng-container>
+          </mat-step>
+        </div>
+      </mat-horizontal-stepper>
+
+    </mat-card-content>
+  </mat-card>
+</div>
