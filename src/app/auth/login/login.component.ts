@@ -18,13 +18,13 @@ import { NotificationService } from 'src/app/core/notification.service';
 })
 export class LoginComponent {
   loginForm!: FormGroup;
-  loginLoading =false;
+  loginLoading = false;
   // @inject (router)=Router
   notificationService!: NotificationService;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-     private router: Router,
+    private router: Router,
     // private notificationService: NotificationService
   ) {
     this.notificationService = inject(NotificationService)
@@ -44,9 +44,9 @@ export class LoginComponent {
 
   onSubmit() {
     console.warn('hello', this.loginForm.value);
-    this.loginLoading=true;
+    this.loginLoading = true;
     this.authService.login(this.loginForm.value).subscribe((response) => {
-     
+
       const authData: AuthData = {
         token: response.token,
         refresh_token: response.refresh_token,
@@ -61,25 +61,25 @@ export class LoginComponent {
       //   localStorage.setItem(environment.refreshTokenKey, authData.refresh_token);
 
       // }
-     
-      this.loginLoading=false;
-   
-       this.notificationService.success(response.message)
-     
+
+
+
+      this.notificationService.success(response.message)
+      this.loginLoading = false;
 
     },
-    (error)=>{
-      this.loginLoading=false;
+      (error) => {
+        this.loginLoading = false;
 
-    },
-    () => {
-      setTimeout(() => {
-        this.router.navigate(['/home'])
-      }, 1500);
-      
-    }
+      },
+      () => {
+        setTimeout(() => {
+          this.router.navigate(['/home'])
+        }, 1000);
+
+      }
     )
 
   }
- 
+
 }

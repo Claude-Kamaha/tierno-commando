@@ -43,7 +43,7 @@ interface SideNavToggle {
 })
 export class SidenavComponent {
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
-  collapsed = false;
+  collapsed = true;
   screenWidth = 0;
   navData = navbarData;
   currentRoute!: string;
@@ -51,22 +51,23 @@ export class SidenavComponent {
     this.currentRoute = window.location.pathname;
 
   }
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.screenWidth = window.innerWidth;
-    if (this.screenWidth <= 768) {
-      this.collapsed = false;
-      this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
-    }
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event: any) {
+  //   this.screenWidth = window.innerWidth;
+  //   if (this.screenWidth <= 768) {
+  //     this.collapsed = false;
+  //     this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
+  //   }
+  // }
   ngOnInit(): void {
     console.log(this.auth.getStoredAuthUser);
-    
-    this.screenWidth = window.innerWidth;
 
-    // if (this.screenWidth <= 768) {
-    //   this.collapsed = true;
-    // }
+    this.screenWidth = window.innerWidth;
+    console.log(this.screenWidth);
+
+    if (this.screenWidth <= 768) {
+      this.collapsed = true;
+    }
     // this.navData = navbarData.map((item: any) => {
     //   const rt = window.location.pathname.toString().split('/');
     //   if (rt.includes(item.routeLink)) {
@@ -148,7 +149,7 @@ export class SidenavComponent {
       });
     }
   }
-  logout(){
-   this.auth.logout() 
+  logout() {
+    this.auth.logout()
   }
 }

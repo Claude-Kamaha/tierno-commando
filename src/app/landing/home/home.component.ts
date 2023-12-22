@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ];
   dataSource = new MatTableDataSource<any>();
   referralList: any;
+  referalLoading = false;
   // range!: FormGroup;
 
   @ViewChild(MatPaginator)
@@ -44,6 +45,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     end: new UntypedFormControl(),
   });
   getAllReferredFriends() {
+    this.referalLoading = true
     this.dataSource = new MatTableDataSource();
 
     this.homeService.getMyReferrals().subscribe((response: any) => {
@@ -77,10 +79,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
       // console.log(response.data);
       this.dataSource = new MatTableDataSource(response.data);
       this.dataSource.paginator = this.paginator;
+      this.referalLoading = false;
 
-    })
+    },
+      (error) => {
+        this.referalLoading = false;
+      }
+    )
   }
-
 
   createUser() {
     this.router.navigate(['/create-client'])
