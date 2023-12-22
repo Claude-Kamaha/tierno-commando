@@ -1,8 +1,10 @@
 <h1>Mes Creations</h1>
 <mat-card class="mat-elevation-z0 page-header-container">
   <mat-card-header class="page-header">
-    <p style="font-weight: bold;">Total:</p>
+    <p style="font-weight: bold;">Total: {{referralList?.length}} </p>
   </mat-card-header>
+  
+  <mat-divider style="padding-bottom: 5px;"></mat-divider>
   <mat-card-content class="page-header-content">
 
     <div class="container">
@@ -10,7 +12,7 @@
       <div>
 
 
-        <mat-form-field>
+        <mat-form-field style="width: 80%;">
           <mat-label>Enter a date range</mat-label>
           <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
             <input matStartDate formControlName="start" placeholder="Start date">

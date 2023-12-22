@@ -55,23 +55,28 @@ export class LoginComponent {
         message: response.message
       };
 
-      if (this.authService.initSession(authData.token, authData.refresh_token)) {
+      // if (this.authService.initSession(authData.token, authData.refresh_token)) {
 
-        localStorage.setItem(environment.tokenKey, authData.token);
-        localStorage.setItem(environment.refreshTokenKey, authData.refresh_token);
+      //   localStorage.setItem(environment.tokenKey, authData.token);
+      //   localStorage.setItem(environment.refreshTokenKey, authData.refresh_token);
 
-      }
+      // }
      
       this.loginLoading=false;
    
-      
-      this.notificationService.success(response.message)
-      this.router.navigate(['/home'])
+       this.notificationService.success(response.message)
+     
 
     },
     (error)=>{
       this.loginLoading=false;
 
+    },
+    () => {
+      setTimeout(() => {
+        this.router.navigate(['/home'])
+      }, 1500);
+      
     }
     )
 

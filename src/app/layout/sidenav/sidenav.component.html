@@ -33,7 +33,8 @@
           <mat-icon> account_circle </mat-icon>
         </i>
         <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
-          {{auth.user.username}}
+ 
+    {{auth.getStoredAuthUser().username}}
         </span>
       </a>
     </li>

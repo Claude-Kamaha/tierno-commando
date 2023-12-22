@@ -23,6 +23,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+
 input[type="button"] {
   width: 48%;
   background-color: rgb(221, 56, 56);
@@ -36,6 +37,9 @@ input[type="button"] {
 
 input[type="submit"]:hover {
   background-color: rgb(139, 139, 234);
+}
+input[type="submit"]:disabled {
+  background-color: #b0b0b0;
 }
 .divHeight {
   width: 100%;

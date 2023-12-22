@@ -4,6 +4,8 @@ import { HomeService } from '../home.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { v4 as uuidv4 } from 'uuid';
+import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/core/notification.service';
 
 export interface geoLocation {
   query: string;
@@ -22,10 +24,13 @@ export class CreateClientComponent {
   createDocForm!: FormGroup;
   deviceId!: string;
   data!: geoLocation;
+  countries:any[]=[];
   constructor(
     private formBuilder: FormBuilder,
     private homeService: HomeService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
+    private notificationService: NotificationService
 
   ) {
 
@@ -72,16 +77,17 @@ export class CreateClientComponent {
         emailAddress: ['', Validators.required],
         password: ['', Validators.required],
         phoneNumber: [''],
-        phoneId: ['', Validators.required],
+        phoneId: [''],
         language: ['', Validators.required],
         firstName: [, Validators.required],
         lastName: [''],
         gender: ['', Validators.required],
         customerType: ['', Validators.required],
-        longitude: ['', Validators.required],
-        latitude: [, Validators.required],
-        ipAddress: [, Validators.required],
-        location: [, Validators.required],
+        countryCode: ['', Validators.required],
+        longitude: [''],
+        latitude: [, ],
+        ipAddress: [, ],
+        location: [, ],
       }
     )
   }
@@ -91,7 +97,9 @@ export class CreateClientComponent {
     return this.deviceId;
   }
   getCountries() {
-    this.homeService.getCountries().subscribe(() => { })
+    this.homeService.getCountries().subscribe((response) => { 
+      this.countries= response.data
+    })
   }
 
 
@@ -112,10 +120,14 @@ export class CreateClientComponent {
     this.createDocForm.value.ipAddress = this.data.query;
     this.createDocForm.value.location = this.data.timezone?.split('/')[1];
     this.homeService.createClient(this.createDocForm.value).subscribe((response) => {
-
+      this.notificationService.success('Compte créé avec succès')
+      setTimeout(() => {
+        this.router.navigate(['home'])
+      }, 1500);
+      
     },
       error => {
-
+     
       })
   }
 }

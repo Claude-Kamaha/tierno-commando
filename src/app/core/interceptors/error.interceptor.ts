@@ -53,7 +53,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           break;
         default:
           // console.log(errorMsg.message);
-          notificationService.warn(`Oops! Something went wrong!`);
+          notificationService.warn(`Probleme de connexion`);
           return throwError(() => error);
           break;
       }

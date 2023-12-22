@@ -54,13 +54,16 @@ export class SidenavComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.screenWidth = window.innerWidth;
-    if (this.screenWidth <= 767) {
+    if (this.screenWidth <= 768) {
       this.collapsed = false;
       this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
     }
   }
   ngOnInit(): void {
+    console.log(this.auth.getStoredAuthUser);
+    
     this.screenWidth = window.innerWidth;
+
     // if (this.screenWidth <= 768) {
     //   this.collapsed = true;
     // }
@@ -96,7 +99,7 @@ export class SidenavComponent {
     });
   }
   closeSidenav2(): void {
-    if (this.screenWidth <= 767) {
+    if (this.screenWidth <= 768) {
       this.collapsed = true;
       this.onToggleSideNav.emit({
         collapsed: this.collapsed,
@@ -137,7 +140,7 @@ export class SidenavComponent {
 
   shrinkItems(item: INavbarData): void {
 
-    if (this.screenWidth <= 767) {
+    if (this.screenWidth <= 768) {
       this.collapsed = true;
       this.onToggleSideNav.emit({
         collapsed: this.collapsed,
