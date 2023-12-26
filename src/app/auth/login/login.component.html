@@ -10,7 +10,7 @@
         </div>
 
         <button type="submit">Login</button>
-      
+
       </form>
 
     </div>
@@ -26,46 +26,47 @@
 
   </div>
 </body> -->
+
 <body>
 
   <div class="formContainer">
-  
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div style="background-color: #200D8E;">
-    <div class="imgcontainer">
-      <img src="../../../assets/jaralogoblue.png" alt="Avatar" class="avatar">
-      <p style="color: WHITE;
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div style="background-color: #200D8E;">
+        <div class="imgcontainer">
+          <img src="../../../assets/jaralogoblue.png" alt="Avatar" class="avatar">
+          <p style="color: WHITE;
       font-size: 25px;
       font-weight: 600;">Jara</p>
-    </div>
-    <hr>
-  </div>
-    <div class="container">
-      <h1 style="text-align: center;font-weight: 600;">Login</h1>
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" formControlName="log" required>
-  
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" formControlName="password" name="psw" required>
-      @if (!loginLoading) {
-        <button type="submit" >Login</button>
-        } 
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <h1 style="text-align: center;font-weight: 600;">Connexion</h1>
+        <label for="uname"><b>Nom d'utilisateur</b></label>
+        <input type="text" placeholder="identifiant" name="uname" formControlName="log" required>
+
+        <label for="psw"><b>Mot de Passe</b></label>
+        <input type="password" placeholder="Mot de Passe" formControlName="password" name="psw" required>
+        @if (!loginLoading) {
+        <button type="submit">Se Connecter</button>
+        }
         @else {
-          <ng-container style="text-align: center;">
-          <app-loader [loading]="loginLoading" ></app-loader>
+        <ng-container style="text-align: center;">
+          <app-loader [loading]="loginLoading"></app-loader>
         </ng-container>
         }
-     
-      
-      <!-- <label>
+
+
+        <!-- <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label> -->
-    </div>
-  
-    <div class="container" style="background-color:#f1f1f1">
-      <!-- <button type="button" class="cancelbtn">Cancel</button> -->
-      <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
-    </div>
-  </form>
-</div>
-  </body>
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <!-- <button type="button" class="cancelbtn">Cancel</button> -->
+        <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+      </div>
+    </form>
+  </div>
+</body>

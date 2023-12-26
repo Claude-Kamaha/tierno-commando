@@ -22,31 +22,31 @@
       </a>
     </li>
     <div class="endlist">
+      <ng-container class="test">
+        <hr />
+        <li class="sidenav-nav-item">
+          <a class="sidenav-nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <i class="sidenav-link-icon">
+              <mat-icon> account_circle </mat-icon>
+            </i>
+            <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
 
-      <hr />
-      <li class="sidenav-nav-item">
-        <a class="sidenav-nav-link" [routerLink]="'profile'" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">
-          <i class="sidenav-link-icon">
-            <mat-icon> account_circle </mat-icon>
-          </i>
-          <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+              {{auth.getStoredAuthUser().username}}
+            </span>
+          </a>
+        </li>
+        <li class="sidenav-nav-item">
+          <a class="sidenav-nav-link" (click)="logout()">
+            <i class="sidenav-link-icon fal fa-sign-out">
+              <mat-icon>logout</mat-icon>
+            </i>
 
-            {{auth.getStoredAuthUser().username}}
-          </span>
-        </a>
-      </li>
-      <li class="sidenav-nav-item">
-        <a class="sidenav-nav-link" (click)="logout()">
-          <i class="sidenav-link-icon fal fa-sign-out">
-            <mat-icon>logout</mat-icon>
-          </i>
-
-          <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
-            Logout
-          </span>
-        </a>
-      </li>
+            <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+              Logout
+            </span>
+          </a>
+        </li>
+      </ng-container>
     </div>
   </ul>
 </div>

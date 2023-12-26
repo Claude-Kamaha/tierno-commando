@@ -24,7 +24,8 @@ export class CreateClientComponent {
   createDocForm!: FormGroup;
   deviceId!: string;
   data!: geoLocation;
-  countries:any[]=[];
+  countries: any[] = [];
+  createloading = false
   constructor(
     private formBuilder: FormBuilder,
     private homeService: HomeService,
@@ -85,9 +86,9 @@ export class CreateClientComponent {
         customerType: ['', Validators.required],
         countryCode: ['', Validators.required],
         longitude: [''],
-        latitude: [, ],
-        ipAddress: [, ],
-        location: [, ],
+        latitude: [,],
+        ipAddress: [,],
+        location: [,],
       }
     )
   }
@@ -97,8 +98,8 @@ export class CreateClientComponent {
     return this.deviceId;
   }
   getCountries() {
-    this.homeService.getCountries().subscribe((response) => { 
-      this.countries= response.data
+    this.homeService.getCountries().subscribe((response) => {
+      this.countries = response.data
     })
   }
 
@@ -114,6 +115,7 @@ export class CreateClientComponent {
   }
 
   submitDoc() {
+    this.createloading = true
     this.createDocForm.value.phoneId = this.deviceId
     this.createDocForm.value.longitude = this.data.lon;
     this.createDocForm.value.latitude = this.data.lat;
@@ -124,10 +126,10 @@ export class CreateClientComponent {
       setTimeout(() => {
         this.router.navigate(['home'])
       }, 1500);
-      
+      this.createloading = false;
     },
       error => {
-     
+        this.createloading = false
       })
   }
 }
