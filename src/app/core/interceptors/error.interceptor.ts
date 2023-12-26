@@ -32,8 +32,6 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           return throwError(() => error);
           break;
         case 400:
-          console.log(error.message);
-
           notificationService.warn(errorMsg.message);
           return throwError(() => error);
           break;
@@ -46,13 +44,13 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           return throwError(() => error);
           break;
         case 503:
-          console.log(errorMsg.message);
+    
 
           notificationService.warn(errorMsg.message);
           return throwError(() => error);
           break;
         default:
-          // console.log(errorMsg.message);
+         
           notificationService.warn(`Probleme de connexion`);
           return throwError(() => error);
           break;

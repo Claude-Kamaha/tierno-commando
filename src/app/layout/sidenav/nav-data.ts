@@ -5,10 +5,10 @@ export const navbarData = [
     label: 'Mes Creations'
   },
 
-  {
-    routeLink: 'kyc/all-kyc',
-    icon: 'verified-user',
-    label: 'KYC'
-  },
+  // {
+  //   routeLink: 'kyc/all-kyc',
+  //   icon: 'verified-user',
+  //   label: 'KYC'
+  // },
 
 ];

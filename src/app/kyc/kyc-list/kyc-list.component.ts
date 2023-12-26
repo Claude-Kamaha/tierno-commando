@@ -38,12 +38,12 @@ export class KycListComponent {
     this.getAllReferredFriends()
   }
   getAllReferredFriends() {
-    console.log(this.auth.user);
+   
 
     this.dataSource = new MatTableDataSource();
 
     this.kycService.getAgentList(this.agentNellysCoinId).subscribe((response: any) => {
-      console.log(response.data);
+    
 
       // let data: any = [
       //   {
@@ -70,7 +70,7 @@ export class KycListComponent {
       //   }
       // ];
 
-      // console.log(response.data);
+   
       this.dataSource = new MatTableDataSource(response.data);
       this.dataSource.paginator = this.paginator;
 

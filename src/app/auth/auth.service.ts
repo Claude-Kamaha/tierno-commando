@@ -30,7 +30,7 @@ export class AuthService {
       
       .pipe(
         map((response: any) => {
-          console.log(response);
+     
           this.user = {
             username: response.data.username,
             id: response.data.userId

@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource();
 
     this.homeService.getMyReferrals().subscribe((response: any) => {
-      console.log(response.data);
+     
       this.referralList = response.data
       // let data: any = [
       //   {
@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       //   }
       // ];
 
-      // console.log(response.data);
+      
       this.dataSource = new MatTableDataSource(response.data);
       this.dataSource.paginator = this.paginator;
       this.referalLoading = false;
@@ -96,13 +96,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   gotoDetails(row: any) {
-    this.router.navigate(['kyc'])
+    // this.router.navigate(['kyc'])
   }
   filterbyDate() {
     this.range.value.end = this.range.value.end == '' ? '' : new Date(this.range.get('end')?.value).getTime();
     this.range.value.start = this.range.value.start == '' ? '' : new Date(this.range.get('start')?.value).getTime();
 
-    console.log(this.range.value.end);
+  
     let filterData = this.referralList.filter((elt: { joigned_on: { getTime: () => number; }; }) => {
 
 
@@ -112,7 +112,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     })
 
     this.dataSource.data = filterData
-    console.log(filterData)
+    
 
   }
 }

@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { environment, kycEnvironment } from 'src/environment/environment';
 
 export const headersInterceptor: HttpInterceptorFn = (req, next) => {
-  console.log('header interceptor', req.url);
+
 
   if (req.url.startsWith(environment.apiRoot)) {
     let headers = req.headers.set('api-key', environment.apiKey);

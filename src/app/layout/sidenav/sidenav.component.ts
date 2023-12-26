@@ -51,20 +51,17 @@ export class SidenavComponent {
     this.currentRoute = window.location.pathname;
 
   }
-  // @HostListener('window:resize', ['$event'])
-  // onResize(event: any) {
-  //   this.screenWidth = window.innerWidth;
-  //   if (this.screenWidth <= 768) {
-  //     this.collapsed = false;
-  //     this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
-  //   }
-  // }
-  ngOnInit(): void {
-    console.log(this.auth.getStoredAuthUser);
-
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
     this.screenWidth = window.innerWidth;
-    console.log(this.screenWidth);
-
+    if (this.screenWidth <= 768) {
+      this.collapsed = false;
+      this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
+    }
+  }
+  ngOnInit(): void {
+    this.screenWidth = window.innerWidth;
+   
     if (this.screenWidth <= 768) {
       this.collapsed = true;
     }

@@ -26,7 +26,7 @@ export class KycService {
         const documentTypes = response.data.find(
           (data: any) => data.kycLevel == level && data.country == country
         );
-        console.log(documentTypes);
+ 
         return documentTypes?.kycLevelDocuments;
       })
     );

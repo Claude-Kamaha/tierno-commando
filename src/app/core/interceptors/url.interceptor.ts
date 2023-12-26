@@ -8,7 +8,7 @@ export const urlInterceptor: HttpInterceptorFn = (req, next) => {
   ) {
     return next(req);
   }
-  console.log('Here is the url interceptor', req.url)
+
   const nellysCoinsUrl =
     req.url.startsWith('/v1') ||
     req.url.startsWith('/v2') ||
